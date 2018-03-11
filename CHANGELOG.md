@@ -7,6 +7,10 @@ The source code to [eostoken.me](https://eostoken.me) adheres to [Semantic Versi
 
 ## [Unreleased]
 
+### Added
+
+- Setup Google Analytics.
+
 ## [0.1.0][] - 2018-03-10
 
 ### Added
