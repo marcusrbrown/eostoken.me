@@ -1,6 +1,6 @@
 {
   "name": "eostoken.me",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "license": "ISC",
   "description": "Tools for interacting with the EOS ERC-20 token.",
   "author": "Marcus R. Brown <me@igetgam.es>",
