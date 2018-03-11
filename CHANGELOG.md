@@ -7,6 +7,8 @@ The source code to [eostoken.me](https://eostoken.me) adheres to [Semantic Versi
 
 ## [Unreleased]
 
+## [0.1.1][] - 2018-03-10
+
 ### Added
 
 - Setup Google Analytics.
@@ -17,5 +19,6 @@ The source code to [eostoken.me](https://eostoken.me) adheres to [Semantic Versi
 
 - Project creation and initial release.
 
-[Unreleased]: https://github.com/igetgames/eostoken.me/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/igetgames/eostoken.me/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/igetgames/eostoken.me/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/igetgames/eostoken.me/tree/v0.1.0
