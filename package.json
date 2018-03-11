@@ -1,8 +1,13 @@
 {
   "name": "eostoken.me",
   "version": "0.1.0",
-  "private": true,
   "license": "ISC",
+  "description": "Tools for interacting with the EOS ERC-20 token.",
+  "author": "Marcus R. Brown <me@igetgam.es>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/igetgames/eostoken.me.git"
+  },
   "dependencies": {
     "grommet": "^1.10.1",
     "react": "^16.2.0",
