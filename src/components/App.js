@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
-import './App.css';
+import GrommetApp from 'grommet/components/App';
+import Article from 'grommet/components/Article';
+import Header from 'grommet/components/Header';
+import Title from 'grommet/components/Title';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <GrommetApp>
+        <Header>
+          <Title>eostoken.me</Title>
+        </Header>
+        <Article>
+          eostoken.me is an appplication for interacting with the EOS ERC-20 token.
+        </Article>
+      </GrommetApp>
     );
   }
 }
