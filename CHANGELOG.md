@@ -7,6 +7,12 @@ The source code to [eostoken.me](https://eostoken.me) adheres to [Semantic Versi
 
 ## [Unreleased]
 
+### Added
+
+- Generate [truffle-contract] sources from EOSSale and EOSToken artifacts.
+
+[truffle-contract]: https://github.com/trufflesuite/truffle-contract
+
 ## [0.1.1][] - 2018-03-10
 
 ### Added
