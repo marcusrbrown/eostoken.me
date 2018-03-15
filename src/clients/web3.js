@@ -1,5 +1,7 @@
 import { PromiseCallback } from '../utils';
 
+const debug = require('../utils').debug('web3');
+
 // A list of fallback providers in their preferred order.
 const providers = [
   {
@@ -16,10 +18,11 @@ const detectProvider = async (Web3) => {
     const callback = new PromiseCallback();
 
     // Request an endpoint that should be available in all providers.
-    web3.version.getEthereum(callback.cb);
+    web3.version.getNode(callback.cb);
 
     try {
-      await callback.promise;
+      const node = await callback.promise;
+      debug(`Web3 version ${web3.version.api} using provider '${url}' on node '${node}'`);
       return web3;
     } catch (error) {
       // Ignore errors.
