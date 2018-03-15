@@ -26,36 +26,25 @@ const detectProvider = async (Web3) => {
     }
   }
 
-  throw Error('A valid Web3 provider could not be detected');
+  throw new Error('A valid Web3 provider could not be detected');
 };
 
-const promise = new Promise((resolve, reject) => {
-  window.addEventListener('load', async () => {
-    let Web3;
+const promise = new Promise((resolve, reject) =>
+  window.addEventListener('load', () =>
+    import('web3')
+      .then(Web3 => {
+        let web3 = window.web3;
 
-    try {
-      Web3 = window.Web3 = await import('web3');
-    } catch (error) {
-      reject(error);
-      return;
-    }
+        if (typeof web3 !== 'undefined') {
+          return new Web3(web3.currentProvider);
+        }
 
-    let web3 = window.web3;
-
-    if (typeof web3 !== 'undefined') {
-      web3 = window.web3 = new Web3(web3.currentProvider);
-    } else {
-      try {
-        web3 = window.web3 = await detectProvider(Web3);
-      } catch (error) {
-        reject(error);
-        return;
-      }
-    }
-
-    resolve(web3);
-  });
-});
+        return detectProvider(Web3);
+      })
+      .then(resolve)
+      .catch(reject)
+  )
+);
 
 
 // Export a promise that resolves to an instance of Web3.
