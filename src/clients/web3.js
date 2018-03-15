@@ -32,14 +32,20 @@ const detectProvider = async (Web3) => {
 const promise = new Promise((resolve, reject) => {
   window.addEventListener('load', async () => {
     let Web3;
+
+    try {
+      Web3 = window.Web3 = await import('web3');
+    } catch (error) {
+      reject(error);
+      return;
+    }
+
     let web3 = window.web3;
 
     if (typeof web3 !== 'undefined') {
-      Web3 = window.Web3 = window.Web3 || web3.constructor;
       web3 = window.web3 = new Web3(web3.currentProvider);
     } else {
       try {
-        Web3 = window.Web3 = await import('web3');
         web3 = window.web3 = await detectProvider(Web3);
       } catch (error) {
         reject(error);
