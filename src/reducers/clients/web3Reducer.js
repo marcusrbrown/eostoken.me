@@ -3,7 +3,8 @@ import constants from '../../constants';
 
 const initialState = {
   status: '',
-  error: null
+  error: null,
+  accounts: []
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -19,6 +20,9 @@ export default (state = initialState, { type, payload }) => {
 
     case actionTypes.clients.web3.SET_NETWORK_ID:
       return { ...state, networkId: payload };
+
+    case actionTypes.clients.web3.SET_ACCOUNTS:
+      return { ...state, accounts: payload };
 
     default:
       return state;

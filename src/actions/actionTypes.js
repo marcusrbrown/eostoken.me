@@ -6,6 +6,7 @@ export default {
       SET_ERROR: 'clients/web3/SET_ERROR',
 
       SET_NETWORK_ID: 'clients/web3/SET_NETWORK_ID',
+      SET_ACCOUNTS: 'clients/web3/SET_ACCOUNTS'
     }
   }
 };

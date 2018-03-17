@@ -27,11 +27,30 @@ const getNetworkId = (web3) => async (dispatch) => {
   });
 };
 
+const getAccounts = (web3) => async (dispatch) => {
+  const callback = new PromiseCallback();
+  let err, accounts;
+
+  web3.eth.getAccounts(callback.cb);
+  [err, accounts] = await to(callback.promise);
+
+  if (err) {
+    dispatch(setError(err));
+    return;
+  }
+
+  dispatch({
+    type: actionTypes.clients.web3.SET_ACCOUNTS,
+    payload: accounts
+  });
+};
+
 const initialize = (web3) => async (dispatch) => {
   dispatch({ type: actionTypes.clients.web3.INITIALIZE });
 
   const promises = [
-    getNetworkId(web3)
+    getNetworkId(web3),
+    getAccounts(web3)
   ];
   let [err] = await to(Promise.all(promises.map(p => dispatch(p))));
 
