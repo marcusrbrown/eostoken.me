@@ -3,6 +3,12 @@ import actionTypes from './actionTypes';
 import constants from '../constants';
 import { PromiseCallback } from '../utils';
 
+const setError = error => ({
+  type: actionTypes.clients.web3.SET_ERROR,
+  payload: error,
+  error: true
+});
+
 const getNetworkId = (web3) => async (dispatch) => {
   const callback = new PromiseCallback();
   let err, networkId;
@@ -11,6 +17,8 @@ const getNetworkId = (web3) => async (dispatch) => {
   [err, networkId] = await to(callback.promise);
 
   if (err) {
+    dispatch(setError(err));
+    return;
   }
 
   dispatch({
@@ -28,6 +36,8 @@ const initialize = (web3) => async (dispatch) => {
   let [err] = await to(Promise.all(promises.map(p => dispatch(p))));
 
   if (err) {
+    dispatch(setError(err));
+    return;
   }
 
   dispatch({ type: actionTypes.clients.web3.SET_READY });
@@ -36,6 +46,7 @@ const initialize = (web3) => async (dispatch) => {
 export default {
   web3: {
     initialize,
+    setError,
     getNetworkId
   }
 };

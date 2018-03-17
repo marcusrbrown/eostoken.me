@@ -29,6 +29,7 @@ class ClientConnector extends Component {
     [err, web3] = await to(web3Loader);
 
     if (err) {
+      this.props.dispatch(clientActions.web3.setError(err));
       return;
     }
 
