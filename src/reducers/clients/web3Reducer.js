@@ -10,6 +10,12 @@ export default (state = initialState, { type, payload }) => {
     case actionTypes.clients.web3.INITIALIZE:
       return { ...state, status: constants.web3.status.INITIALIZING };
 
+    case actionTypes.clients.web3.SET_READY:
+      return { ...state, status: constants.web3.status.READY };
+
+    case actionTypes.clients.web3.SET_NETWORK_ID:
+      return { ...state, networkId: payload };
+
     default:
       return state;
   }
