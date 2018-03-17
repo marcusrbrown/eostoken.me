@@ -13,6 +13,8 @@ const providers = [
 ];
 
 const detectProvider = async (Web3) => {
+  debug('Detecting fallback provider for Web3...');
+
   for (let { url } of providers) {
     const web3 = new Web3(new Web3.providers.HttpProvider(url));
     const callback = new PromiseCallback();
