@@ -14,8 +14,16 @@ const composeEnhancers =
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     : compose;
 
+let middleware = [thunk];
+
+if (process.env.NODE_ENV !== 'production') {
+  const ensureFSAMiddleware = require('@meadow/redux-ensure-fsa').default;
+
+  middleware = [...middleware, ensureFSAMiddleware()];
+}
+
 export default createStore(
   combineReducers(reducers),
   preloadedState,
-  composeEnhancers(applyMiddleware(thunk))
+  composeEnhancers(applyMiddleware(...middleware))
 );

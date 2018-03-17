@@ -36,6 +36,7 @@
     "create-truffle-contracts": "node scripts/create-truffle-contracts.js"
   },
   "devDependencies": {
+    "@meadow/redux-ensure-fsa": "^2.0.0",
     "chalk": "^2.3.2",
     "changelog-verify": "^1.1.0",
     "env-cmd": "https://github.com/toddbluhm/env-cmd.git",
