@@ -1,9 +1,11 @@
 import { Children, Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import to from 'await-to-js';
 import { web3 as web3Loader } from '../clients';
 import { clients as clientActions } from '../actions';
+import { clients as clientSelectors } from '../selectors';
 
 class ClientConnector extends Component {
   static propTypes = {
@@ -42,4 +44,8 @@ class ClientConnector extends Component {
   }
 }
 
-export default connect()(ClientConnector);
+export default connect(
+  createStructuredSelector({
+    web3Status: clientSelectors.web3.selectStatus
+  })
+)(ClientConnector);
