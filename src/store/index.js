@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore, combineReducers, compose } from 'redux';
 import thunk from 'redux-thunk';
-import * as reducers from '../reducers';
+import reducers from '../reducers';
 
 const preloadedState =
   typeof window === 'object' ? window.__PRELOADED_STATE__ : {};
