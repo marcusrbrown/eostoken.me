@@ -10,8 +10,10 @@
   },
   "homepage": "https://eostoken.me",
   "dependencies": {
+    "await-to-js": "^2.0.1",
     "debug": "^3.1.0",
     "grommet": "^1.10.1",
+    "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
