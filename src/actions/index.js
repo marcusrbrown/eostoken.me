@@ -1,7 +1,7 @@
-import { default as client } from './clientActions';
+import { default as clients } from './clientActions';
 
 export { default as actionTypes } from './actionTypes';
 
 export {
-  client
+  clients
 };

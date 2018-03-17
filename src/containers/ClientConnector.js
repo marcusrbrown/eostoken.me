@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import to from 'await-to-js';
 import { web3 as web3Loader } from '../clients';
-import { client as clientActions } from '../actions';
+import { clients as clientActions } from '../actions';
 
 class ClientConnector extends Component {
   static propTypes = {
