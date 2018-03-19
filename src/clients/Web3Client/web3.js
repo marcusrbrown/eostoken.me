@@ -1,6 +1,6 @@
-import { PromiseCallback } from '../utils';
+import { PromiseCallback } from '../../utils';
 
-const debug = require('../utils').debug('web3');
+const debug = require('../../utils').debug('web3');
 
 // A list of fallback providers in their preferred order.
 const providers = [
@@ -50,7 +50,6 @@ const promise = new Promise((resolve, reject) =>
       .catch(reject)
   )
 );
-
 
 // Export a promise that resolves to an instance of Web3.
 export default promise;

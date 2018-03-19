@@ -1,3 +1,3 @@
-import web3 from './web3';
+import Web3Client from './Web3Client';
 
-export { web3 };
+export { Web3Client };

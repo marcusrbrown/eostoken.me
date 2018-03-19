@@ -2,10 +2,12 @@ import { Children, Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import to from 'await-to-js';
-import { web3 as web3Loader } from '../clients';
+import { Web3Client } from '../clients';
 import { clients as clientActions } from '../actions';
 import { clients as clientSelectors } from '../selectors';
+import constants from '../constants';
+
+const debug = require('../utils').debug('clientconnector');
 
 class ClientConnector extends Component {
   static propTypes = {
@@ -13,30 +15,54 @@ class ClientConnector extends Component {
   }
 
   static childContextTypes = {
-    web3: PropTypes.object
+    web3Client: PropTypes.instanceOf(Web3Client)
   }
 
   constructor(...args) {
     super(...args);
-    this.web3 = null;
+    this.web3Client = new Web3Client();
+    this.unsubscribers = [];
   }
 
   getChildContext() {
-    return { web3: this.web3 };
+    return { web3Client: this.web3Client };
   }
 
-  async componentDidMount() {
-    let err, web3;
+  componentDidMount() {
+    this.unsubscribers.push(this.web3Client.subscribe('*', (type, payload) => {
+      switch (type) {
+        case 'error':
+          this.props.dispatch(clientActions.web3.setError(payload));
+          break;
 
-    [err, web3] = await to(web3Loader);
+        case 'connect':
+          this.props.dispatch(clientActions.web3.initialize(payload));
+          break;
 
-    if (err) {
-      this.props.dispatch(clientActions.web3.setError(err));
-      return;
+        case 'ready':
+          // Ignored.
+          break;
+
+        default:
+          debug(`Unhandled Web3Client event '${type}'`, payload);
+          break;
+      }
+    }));
+
+    this.web3Client.connect();
+  }
+
+  componentWillUnmount() {
+    for (let unsubscribe of this.unsubscribers) {
+      unsubscribe();
     }
+    this.unsubscribers = [];
+  }
 
-    this.web3 = web3;
-    this.props.dispatch(clientActions.web3.initialize(web3));
+  componentWillReceiveProps({ web3Status }) {
+    if ((this.props.web3Status !== web3Status) && (web3Status === constants.web3.status.READY)) {
+      this.web3Client.emit('ready', this.web3Client.web3);
+    }
   }
 
   render() {
