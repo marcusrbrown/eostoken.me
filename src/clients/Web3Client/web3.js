@@ -12,11 +12,56 @@ const providers = [
   }
 ];
 
+const wrapProvider = process.env.NODE_ENV === 'development'
+  ? (provider) => {
+    const hookedSendAsync = provider.sendAsync;
+    if (!hookedSendAsync.verbose) {
+      provider.sendAsync = (payload, callback) => {
+        debug(`\n   > ${JSON.stringify(payload, null, 2).split('\n').join('\n   > ')}`);
+
+        hookedSendAsync.call(provider, payload, (error, result) => {
+          if (error) {
+            debug(`sendAsync error: ${error.message}`);
+          } else {
+            debug(`\n <   ${JSON.stringify(result, null, 2).split('\n').join('\n <   ')}`);
+          }
+
+          callback(error, result);
+        });
+      };
+
+      provider.sendAsync.verbose = true;
+    }
+
+    const hookedSend = provider.send;
+    if (!hookedSend.verbose) {
+      provider.send = (payload) => {
+        debug(`\n   > ${JSON.stringify(payload, null, 2).split('\n').join('\n   > ')}`);
+
+        let result;
+        try {
+          result = hookedSend.call(provider, payload);
+        } catch (error) {
+          debug(`send error: ${error.message}`);
+          throw error;
+        }
+
+        debug(`\n <   ${JSON.stringify(result, null, 2).split('\n').join('\n <   ')}`);
+        return result;
+      };
+
+      provider.send.verbose = true;
+    }
+
+    return provider;
+  }
+  : (provider) => provider;
+
 const detectProvider = async (Web3) => {
   debug('Detecting fallback provider for Web3...');
 
   for (let { url } of providers) {
-    const web3 = new Web3(new Web3.providers.HttpProvider(url));
+    const web3 = new Web3(wrapProvider(new Web3.providers.HttpProvider(url)));
     const callback = new PromiseCallback();
 
     // Request an endpoint that should be available in all providers.
@@ -41,7 +86,7 @@ const promise = new Promise((resolve, reject) =>
         let web3 = window.web3;
 
         if (typeof web3 !== 'undefined') {
-          return new Web3(web3.currentProvider);
+          return new Web3(wrapProvider(web3.currentProvider));
         }
 
         return detectProvider(Web3);
