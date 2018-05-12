@@ -1,8 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Anchor from 'grommet/components/Anchor';
 import App from 'grommet/components/App';
 import Article from 'grommet/components/Article';
 import Header from 'grommet/components/Header';
+import Menu from 'grommet/components/Menu';
 import Notification from 'grommet/components/Notification';
 import Paragraph from 'grommet/components/Paragraph';
 import Sidebar from 'grommet/components/Sidebar';
@@ -23,6 +25,22 @@ const createRoutes = (contents, path) => (
   }, [])
 );
 
+const createMenuAnchors = sitemap =>
+  sitemap.reduce((anchors, content) => {
+    if (content.label) {
+      anchors.push(
+        <Anchor
+          key={content.path || ''}
+          path={`/${content.path || ''}`}
+        >
+          {content.label}
+        </Anchor>
+      );
+    }
+
+    return anchors;
+  }, []);
+
 const Routes = ({ sitemap }) => (
   <Switch>
     {createRoutes(sitemap)}
@@ -37,6 +55,9 @@ export default () => (
           <Header>
             <Title>eostoken.me</Title>
           </Header>
+          <Menu>
+            {createMenuAnchors(sitemap)}
+          </Menu>
         </Sidebar>
         <Article>
           <Paragraph>

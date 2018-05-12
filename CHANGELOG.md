@@ -13,6 +13,7 @@ The source code to [eostoken.me](https://eostoken.me) adheres to [Semantic Versi
 - Integrate [Web3].
 - Integrate [Redux] for managing state.
 - Create routes.
+- Add menus.
 
 ### Changed
 
