@@ -14,6 +14,10 @@ The source code to [eostoken.me](https://eostoken.me) adheres to [Semantic Versi
 - Integrate [Redux] for managing state.
 - Create routes.
 
+### Changed
+
+- Update dependencies.
+
 [truffle-contract]: https://github.com/trufflesuite/truffle-contract
 [Web3]: https://github.com/ethereum/web3.js
 [Redux]: https://github.com/reactjs/redux
