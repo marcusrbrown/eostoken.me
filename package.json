@@ -40,7 +40,7 @@
   "devDependencies": {
     "@meadow/redux-ensure-fsa": "^2.0.0",
     "chalk": "^2.3.2",
-    "changelog-verify": "^1.1.0",
+    "changelog-verify": "1.1.2",
     "env-cmd": "https://github.com/toddbluhm/env-cmd.git",
     "gh-pages": "^1.1.0",
     "github-release-from-changelog": "^1.3.1",
