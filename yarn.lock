@@ -7344,6 +7344,15 @@ truffle-blockchain-utils@^0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/truffle-blockchain-utils/-/truffle-blockchain-utils-0.0.4.tgz#e31a346db61775c80ccd6f632de5e72f97f20ea5"
 
+truffle-contract-schema@2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/truffle-contract-schema/-/truffle-contract-schema-2.0.3.tgz#0af8e19a39c630730bc19dd41b48f5b4137a6977"
+  integrity sha512-eI5cFifbB3zpcO4RsXSnjN9JMSlJ4M50GQPdrfbrIXRTXHsyQ433SkgFjIATUwfq++TXWkCRfKMjN8eA7YQ3+Q==
+  dependencies:
+    ajv "^5.1.1"
+    crypto-js "^3.1.9-1"
+    debug "^3.1.0"
+
 truffle-contract-schema@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/truffle-contract-schema/-/truffle-contract-schema-2.0.0.tgz#535378c0b6a7f58011ea8d84f57771771cb45163"
