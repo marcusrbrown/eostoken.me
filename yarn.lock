@@ -7653,9 +7653,10 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-version-changelog@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/version-changelog/-/version-changelog-2.1.0.tgz#469f63bd9ffc182f14f2c004df2f3797cef866d4"
+version-changelog@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/version-changelog/-/version-changelog-2.1.1.tgz#5aa92ecc965d4e36d1afb34de811652eb1cb8cc2"
+  integrity sha1-WqkuzJZdTjbRr7NN6BFlLrHLjMI=
   dependencies:
     cross-spawn "^4.0.2"
     github-url-from-git "^1.4.0"
