@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@meadow/redux-ensure-fsa": "^2.0.0",
-    "chalk": "^2.4.1",
+    "chalk": "^5.0.0",
     "changelog-verify": "^1.1.2",
     "env-cmd": "^8.0.1",
     "gh-pages": "^1.1.0",
